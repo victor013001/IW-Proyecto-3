@@ -13,6 +13,7 @@ const authOptions: NextAuthOptions = {
       issuer: process.env.AUTH0_ISSUER
     }),
   ],
+  secret: process.env.NEXT_PUBLIC_SECRET,
 };
 
 const auth = async (req: NextApiRequest, res: NextApiResponse) => await NextAuth(req, res, authOptions);
