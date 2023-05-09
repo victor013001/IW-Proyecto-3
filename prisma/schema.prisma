@@ -28,7 +28,8 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([provider, providerAccountId])
 }
 
@@ -41,21 +42,43 @@ model Session {
 }
 
 model User {
-  id            String       @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?      @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
-  role          Role?        @relation(fields: [roleId], references: [id])
+  role          Role?      @relation(fields: [roleId], references: [id])
   roleId        String?
   accounts      Account[]
   sessions      Session[]
+  movements     Movement[]
+  materials     Material[]
 }
 
 model Role {
-  id    String        @id @default(cuid())
-  name  Enum_RoleName
-  users User[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String        @id @default(cuid())
+  name      Enum_RoleName
+  users     User[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Movement {
+  id         String   @id @default(cuid())
+  input      Int
+  output     Int
+  createdAt  DateTime @default(now())
+  createdBy  User     @relation(fields: [userId], references: [id])
+  userId     String
+  material   Material @relation(fields: [materialId], references: [id])
+  materialId String
+}
+
+model Material {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  createdAt DateTime   @default(now())
+  createdBy User       @relation(fields: [userId], references: [id])
+  userId    String
+  movements Movement[]
 }
