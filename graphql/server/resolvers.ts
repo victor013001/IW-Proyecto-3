@@ -18,7 +18,7 @@ const resolvers: Resolver = {
     user: async (parent, args, context) => {
       const { db, session } = context;
       // eslint-disable-next-line no-console
-      console.log('Session: ', session);
+      console.log('Session resolver: ', session);
       const user = await db.user.findFirst(
         {
           where: {

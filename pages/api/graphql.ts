@@ -18,7 +18,6 @@ const server = new ApolloServer({
 const serverHandler = startServerAndCreateNextHandler<NextApiRequest, Context>(server, {
   context: async (req: NextApiRequest, res: NextApiResponse) => {
     const session = await getServerSession(req, res, authOptions);
-    // eslint-disable-next-line no-console
     return {
       req,
       res,
@@ -30,8 +29,6 @@ const serverHandler = startServerAndCreateNextHandler<NextApiRequest, Context>(s
 
 const graphqlServer = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions);
-  // eslint-disable-next-line no-console
-  console.log('Session: ', session);
   if (process.env.NODE_ENV === 'production' && !session) {
     res.status(401).send("Unauthorized");
     return;
