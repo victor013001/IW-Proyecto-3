@@ -1,9 +1,23 @@
 import { Resolver } from 'types';
 
 const resolvers: Resolver = {
+
+  User: {
+    role: async (parent, args, context) => {
+      const { db } = context;
+      const role = await db.role.findUnique({
+        where: {
+          id: parent.roleId
+        },
+      });
+      return role;
+    }
+  },
+
   Query: {
     user: async (parent, args, context) => {
       const { db } = context;
+
       const user = await db.user.findFirst(
         {
           where: {
@@ -12,7 +26,7 @@ const resolvers: Resolver = {
         }
       );
       return user;
-    },
+    }
   },
 
   Mutation: {
