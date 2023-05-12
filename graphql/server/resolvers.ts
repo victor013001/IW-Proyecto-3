@@ -1,4 +1,6 @@
+import { Enum_RoleName, PrismaClient } from '@prisma/client';
 import { Resolver } from 'types';
+import { Session } from "next-auth/core/types";
 
 const resolvers: Resolver = {
 
@@ -17,16 +19,22 @@ const resolvers: Resolver = {
   Query: {
     user: async (parent, args, context) => {
       const { db, session } = context;
-      // eslint-disable-next-line no-console
-      console.log('Session resolver: ', session);
-      const user = await db.user.findFirst(
-        {
-          where: {
-            email: args.email,
-          },
-        }
-      );
-      return user;
+
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      if (hasRoleValidRole) {
+        const user = await db.user.findFirst(
+          {
+            where: {
+              email: args.email,
+            },
+          }
+        );
+        return user;
+      }
+      return null;
     }
   },
 
@@ -42,6 +50,41 @@ const resolvers: Resolver = {
       return user;
     }
   },
+}
+
+interface hasRoleProps {
+  db: PrismaClient;
+  session: Session | null;
+  validRoles: Enum_RoleName[];
+}
+
+const hasRole = async ({ db, session, validRoles }: hasRoleProps) => {
+  if (!session) {
+    return false;
+  }
+
+  const email = session?.user?.email ?? '';
+
+  if (!email) {
+    return false;
+  }
+
+  const userSession = await db.user.findUnique({
+    where: {
+      email: email,
+    },
+    include: {
+      role: true,
+    },
+  });
+
+  const userRole = userSession?.role?.name;
+
+  if (!userRole) {
+    return false;
+  }
+
+  return validRoles.includes(userRole);
 }
 
 export { resolvers };
