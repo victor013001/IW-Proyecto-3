@@ -38,9 +38,17 @@ const typeDefs = gql`
     material: Material
   }
 
+  type MaterialBalance {
+    id: ID
+    createdAt: DateTime
+    name: String
+    balance: Int
+  }
+
   type Query {
     user(email: String!): User
     users: [User]
+    materials: [MaterialBalance]
   }
 
   type Mutation {
