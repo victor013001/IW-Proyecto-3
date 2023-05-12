@@ -10,4 +10,15 @@ const CREATE_MATERIAL = gql`
   }
 `;
 
-export { CREATE_MATERIAL };
+const GET_MATERIALS_BALANCE = gql`
+  query Materials {
+    materials {
+      id
+      createdAt
+      name
+      balance
+    }
+  }
+`;
+
+export { CREATE_MATERIAL, GET_MATERIALS_BALANCE };
