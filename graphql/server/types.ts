@@ -15,6 +15,7 @@ const typeDefs = gql`
     name: String
     email: String
     image: String
+    createdAt: DateTime
     role: Role
     materials: [Material]
     movements: [Movement]
@@ -39,6 +40,7 @@ const typeDefs = gql`
 
   type Query {
     user(email: String!): User
+    users: [User]
   }
 
   type Mutation {
