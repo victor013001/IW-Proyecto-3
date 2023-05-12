@@ -1,14 +1,12 @@
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
-import { PrismaClient } from '@prisma/client';
+import prisma from 'config/prisma'
 import { resolvers } from 'graphql/server/resolvers';
 import { typeDefs } from 'graphql/server/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { Context } from 'types';
 import { authOptions } from './auth/[...nextauth]';
-
-const prisma = new PrismaClient();
 
 const server = new ApolloServer({
   resolvers,
