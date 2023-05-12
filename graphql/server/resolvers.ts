@@ -7,6 +7,12 @@ const resolvers: Resolver = {
   User: {
     role: async (parent, args, context) => {
       const { db } = context;
+      const roleId = parent?.roleId;
+
+      if (!roleId) {
+        return null;
+      }
+
       const role = await db.role.findUnique({
         where: {
           id: parent.roleId
@@ -34,6 +40,19 @@ const resolvers: Resolver = {
         );
         return user;
       }
+      return null;
+    },
+    users: async (parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      if (hasRoleValidRole) {
+        const users = await db.user.findMany();
+        return users;
+      }
+
       return null;
     }
   },
