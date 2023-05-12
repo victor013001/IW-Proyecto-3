@@ -45,6 +45,7 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(name: String!, email: String!): User
+    createMaterial(name: String!, input: Int!): Material
   }
 `;
 
