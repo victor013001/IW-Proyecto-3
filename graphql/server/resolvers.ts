@@ -54,6 +54,19 @@ const resolvers: Resolver = {
       }
 
       return null;
+    },
+    materials: async (parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      if (hasRoleValidRole) {
+        return await db.$queryRaw`
+          SELECT * FROM material_balance   
+        `;
+      };
+      return null;
     }
   },
 
@@ -67,7 +80,54 @@ const resolvers: Resolver = {
         },
       });
       return user;
-    }
+    },
+
+    createMaterial: async (parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      const email = session?.user?.email ?? '';
+
+      if (hasRoleValidRole) {
+        try {
+          const material = await db.material.create({
+            data: {
+              name: args.name,
+              createdBy: {
+                connect: {
+                  email,
+                }
+              }
+            }
+          });
+
+          await db.movement.create({
+            data: {
+              input: args.input,
+              output: 0,
+              createdBy: {
+                connect: {
+                  email,
+                }
+              },
+              material: {
+                connect: {
+                  name: material.name,
+                }
+              }
+            }
+          });
+
+          return material;
+        } catch (error) {
+          return null;
+        }
+      };
+
+      return null;
+    },
   },
 }
 
