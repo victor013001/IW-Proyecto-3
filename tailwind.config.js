@@ -7,6 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'color-sidebar': '#5C6A6C',
+        'buttom-sidebar': '#67CCC1',
+        'buttom-hover-sidebar': '#4294AB',
+        'buttom-logout-sidebar': '#667D80',
+        'buttom-logout-hover-sidebar': '#48524E',
+      }
     },
   },
   plugins: [],

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.img-logo{
+  background-image: url("/media/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+   background-attachment: fixed;
+}
 .debug {
   border: 1px solid red;
 }
