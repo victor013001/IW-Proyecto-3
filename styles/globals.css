@@ -5,3 +5,34 @@
 .debug {
   border: 1px solid red;
 }
+
+h1 {
+  @apply text-3xl font-bold text-gray-800
+}
+
+table {
+  
+}
+
+td, th {
+  border: 1px solid black;
+}
+
+th {
+  @apply bg-gray-500 text-white px-24;
+}
+
+tr:nth-child(even) {
+  @apply bg-gray-200;
+}
+
+td > div{
+  @apply flex justify-center;
+}
+
+button {
+  @apply bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-indigo-500;
+}
+
+
+
