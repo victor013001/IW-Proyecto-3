@@ -8,7 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'button-color': '#4294AB',
+        'button-hover': '#67CCC1',
+      }
     },
+    
   },
   plugins: [],
 }

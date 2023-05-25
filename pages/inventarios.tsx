@@ -1,5 +1,7 @@
 import ActionButtons from '@components/ActionButtons'
 import MaterialFilter from '@components/MaterialFilter'
+import { ModalMovimientos } from '@components/modals/ModalMovimientos'
+import { MovimientosContextProvider } from '@context/movimientosContext'
 import Layout from '@layouts/Layout'
 import Head from 'next/head'
 import React from 'react'
@@ -15,62 +17,70 @@ const inventarios = () => {
       <link rel='icon' href='/favicon.ico' />
     </Head>
     <Layout>
-        <div className='flex h-full w-full flex-col p-4'>
-            <div className='flex justify-center'>
-               <h1>Gestión de inventarios</h1> 
-            </div>
-            <div className='flex justify-between'>
-                <MaterialFilter/>
-                <ActionButtons/>
-            </div> 
-            <InventariosTable/>
-        </div>
+			<MovimientosContextProvider>
+				<InventariosMovimientos/>
+			</MovimientosContextProvider>
     </Layout>
     </>
     
-  )
+  );
+}
+
+const InventariosMovimientos = () => {
+  return (
+    <div className='flex h-full w-full flex-col p-4 gap-2'>
+      <div className='flex justify-center'>
+        <h1>Gestión de inventarios</h1> 
+      </div>
+    	<div className='flex justify-between'>
+        <MaterialFilter/>
+        <ActionButtons/>
+      </div> 
+      <InventariosTable/>
+			<ModalMovimientos/> 
+    </div>
+ 	);
 }
 
 export default inventarios
 
 const InventariosTable = ()=>{
-    const datos = data;
-    return (
-        <div className='h-full flex flex-col'>
-            <div className='h-full flex justify-center p-6'>
-                <table className='block'>
-                    <thead>
-                        <tr>
-                            <th>Identificador</th>
-                            <th>Fecha</th>
-                            <th>Entrada</th>
-                            <th>Salida</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {datos.map((dato) => {
-                            return(
-                                <tr key={`row_${dato.Identificador}`}>
-                                    <td>
-                                      <div>{dato.Identificador}</div>  
-                                    </td>
-                                    <td>
-                                       <div>{dato.Fecha}</div> 
-                                    </td>
-                                    <td>
-                                       <div>{dato.Entrada}</div> 
-                                    </td>
-                                    <td>
-                                        <div>{dato.Salida}</div>
-                                    </td>
-                                    
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <div className=''>Paginacion</div> 
+  const datos = data;
+  return (
+    <div className='h-full flex flex-col'>
+      <div className='h-full flex justify-center p-6'>
+        <table className='block'>
+          <thead>
+            <tr>
+              <th>Identificador</th>
+              <th>Fecha</th>
+              <th>Entrada</th>
+              <th>Salida</th>
+            </tr>
+          </thead>
+          <tbody>
+            {datos.map((dato) => {
+              return(
+                <tr key={`row_${dato.Identificador}`}>
+                  <td>
+                    <div>{dato.Identificador}</div>  
+                  </td>
+                  <td>
+                    <div>{dato.Fecha}</div> 
+                  </td>
+                  <td>
+                    <div>{dato.Entrada}</div> 
+                  </td>
+                  <td>
+                    <div>{dato.Salida}</div>
+                  </td>      
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
         </div>
-    );
+          <div className=''>Paginacion</div> 
+        </div>
+  );
 }
