@@ -21,6 +21,35 @@ const resolvers: Resolver = {
       return role;
     }
   },
+  Movement: {
+    createBy: async (parent, args, context) => {
+      const { db } = context;
+      const userId = parent?.userId;
+      if(!userId){
+        return null;
+      }
+      const createBy = await db.user.findUnique({
+        where: {
+          id: userId
+        },
+      });
+      return createBy;
+    },
+    material: async (parent, args, context) => {
+      const { db } = context;
+      const materialId = parent?.materialId;
+      if(!materialId){
+        return null;
+      }
+      const material = await db.material.findUnique({
+        where: {
+          id: materialId
+        },
+      });
+      return material;
+    }
+
+  },
 
   Query: {
     user: async (parent, args, context) => {
@@ -139,11 +168,17 @@ const resolvers: Resolver = {
       const email = session?.user?.email ?? '';
 
       if (hasRoleValidRole){
+        const { input } = args;
+        const { output } = args;
+
+        if ((input == 0 && output == 0) || (input > 0 && output != 0) || (output > 0 && input != 0)) {
+          return null;
+        }
         try{
           const movement = await db.movement.create({
             data: {
-              input: args.input,
-              output: args.output,
+              input: input,
+              output: output,
               createdBy: {
                 connect: {
                   email: email
