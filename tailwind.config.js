@@ -9,8 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'button-color': '#4294AB',
-        'button-hover': '#67CCC1',
+        'green-color': '#248068',
+        'green-hover': '#2EA082',
+        'base-color': '#515760'
       }
     },
     

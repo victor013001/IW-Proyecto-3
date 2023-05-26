@@ -8,7 +8,7 @@ const ActionButtons = () => {
   return (
     <div>
         <div>
-            <button onClick={() => setOpenModalMovimientos(true)}>Agregar movimiento</button>
+            <button type='button' onClick={() => setOpenModalMovimientos(true)}>Agregar movimiento</button>
         </div>
         
     </div>

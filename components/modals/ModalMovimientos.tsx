@@ -33,8 +33,8 @@ const ModalMovimientos = () => {
 						<input type='number' name='valor' min={0} step={1} placeholder='0'></input>
 					</label>
 					<div className='w-full flex justify-center gap-6'>
-						<button>Crear</button>
-						<button onClick={()=>setOpenModalMovimientos(false)} className='secondary'>Cancelar</button>
+						<button type='button'>Crear</button>
+						<button type='button' onClick={()=>setOpenModalMovimientos(false)} className='secondary'>Cancelar</button>
 					</div>
 				</form>
     	</div>

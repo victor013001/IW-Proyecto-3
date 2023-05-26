@@ -37,6 +37,7 @@ const InventariosMovimientos = () => {
         <ActionButtons/>
       </div> 
       <InventariosTable/>
+			<div className=''>Footer</div>
 			<ModalMovimientos/> 
     </div>
  	);
@@ -48,7 +49,7 @@ const InventariosTable = ()=>{
   const datos = data;
   return (
     <div className='h-full flex flex-col'>
-      <div className='h-full flex justify-center p-6'>
+      <div className='h-[80vh] flex justify-center p-6 overflow-y-auto'>
         <table className='block'>
           <thead>
             <tr>

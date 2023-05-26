@@ -10,16 +10,12 @@ h1 {
   @apply text-3xl font-bold text-gray-800;
 }
 
-table {
-  
-}
-
 td, th {
   border: 1px solid black;
 }
 
 th {
-  @apply bg-gray-500 text-white px-24;
+  @apply bg-green-color text-white px-16;
 }
 
 tr:nth-child(even) {
@@ -30,12 +26,12 @@ td > div{
   @apply flex justify-center;
 }
 
-button {
-  @apply bg-button-color text-white font-semibold px-3 py-2 rounded-md hover:bg-button-hover;
+button, button[type='button'] {
+  @apply bg-green-color text-white font-semibold px-3 py-2 rounded-md hover:bg-green-hover;
 }
 
 select, input {
-  @apply rounded-md border border-gray-300 px-2 py-1 outline-none focus:border-indigo-500;
+  @apply rounded-md border border-gray-300 px-2 py-1 outline-none focus:border-green-hover;
 }
 
 button.secondary {
