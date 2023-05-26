@@ -6,22 +6,27 @@
   border: 1px solid red;
 }
 
+h1 {
+  @apply text-3xl font-bold text-gray-800;
+}
+
 table{
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-td, th{
+td, th {
   border: 1px solid black;
-  justify-content: start;
-  align-items: center;
-  padding-left: 10px;
 }
 
-th{
-  @apply bg-gray-400 px-6 justify-start mx-2 items-start h-10 w-60; 
+th {
+  @apply bg-gray-500 text-white px-24;
 }
 
-td:nth-child(odd){  
-  @apply bg-gray-200 h-10 ;
+tr:nth-child(even) {
+  @apply bg-gray-200;
+}
+
+td > div{
+  @apply flex justify-center;
 }

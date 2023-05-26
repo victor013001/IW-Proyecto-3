@@ -5,10 +5,10 @@ const GestionMateriales = () => {
     <div className='border flex flex-row h-[100%]'>
       <div className='border w-[80%] flex flex-col justify-between items-center '>
         <div className='m-10'>
-          <span className='text-normal text-5xl'>Gestión de Materiales</span>
+          <h1>Gestión de Materiales</h1>
         </div>
-        <div className='border w-[100%] h-[100%] flex flex-col pl-24 pr-20'>
-          <div className='p-6 m-6 flex flex-col justify-center items-center'>
+        <div className='h-full flex flex-col'>
+          <div className='h-full flex justify-center p-6'>
           <table className='block'>
               <thead>
                 <tr>
