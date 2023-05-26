@@ -5,3 +5,23 @@
 .debug {
   border: 1px solid red;
 }
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td, th{
+  border: 1px solid black;
+  justify-content: start;
+  align-items: center;
+  padding-left: 10px;
+}
+
+th{
+  @apply bg-gray-400 px-6 justify-start mx-2 items-start h-10 w-60; 
+}
+
+td:nth-child(odd){  
+  @apply bg-gray-200 h-10 ;
+}
