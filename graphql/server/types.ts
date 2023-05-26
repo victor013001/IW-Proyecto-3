@@ -49,6 +49,7 @@ const typeDefs = gql`
     user(email: String!): User
     users: [User]
     materials: [MaterialBalance]
+    movements(name: String!): [Movement]
   }
 
   type Mutation {

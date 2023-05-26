@@ -97,7 +97,27 @@ const resolvers: Resolver = {
         `;
       };
       return null;
-    }
+    },
+    movements: async (parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+      if (hasRoleValidRole){
+        try{
+          const movements = await db.movement.findMany({
+            where: {
+              material: {
+                name: args.name
+              }
+            }
+          });
+          return movements;
+        }catch(error){
+          return null;
+        }
+      }
+      return null;
+    },
   },
 
   Mutation: {
