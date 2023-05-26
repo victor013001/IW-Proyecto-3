@@ -1,6 +1,18 @@
+import { useQuery } from '@apollo/client';
+import { GET_MATERIALS_BALANCE } from 'graphql/client/material';
 import React from 'react'
+import { MaterialBalance } from 'types';
 
 const GestionMateriales = () => {
+
+  const {data, loading} =
+  useQuery<{materials: MaterialBalance[]}>(GET_MATERIALS_BALANCE,
+     {
+      fetchPolicy:'network-only',
+  });
+  if (loading) return <div>Loading...</div>
+
+
   return (
     <div className='border flex flex-row h-[100%]'>
       <div className='border w-[80%] flex flex-col justify-between items-center '>
@@ -19,18 +31,25 @@ const GestionMateriales = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>12/12/2021</td>
-                  <td>Material 1</td>
-                  <td>100</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>12/12/2021</td>
-                  <td>Material 2</td>
-                  <td>100</td>
-                </tr>
+                {data?.materials.map((material) => {
+                  console.log(material)
+                  return(
+                    <tr key={`row_${material.id}`}>
+                      <td>
+                        <div>{material.id}</div>  
+                      </td>
+                      <td>
+                        <div>{material.createdAt}</div> 
+                      </td>
+                      <td>
+                        <div>{material.name}</div> 
+                      </td>
+                      <td>
+                        <div>{material.balance}</div>
+                      </td>      
+                    </tr>
+                  )
+                })}
               </tbody>  
             </table>
           </div>
