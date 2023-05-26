@@ -10,17 +10,12 @@ h1 {
   @apply text-3xl font-bold text-gray-800;
 }
 
-table{
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
 td, th {
   border: 1px solid black;
 }
 
 th {
-  @apply bg-gray-500 text-white px-24;
+  @apply bg-green-color text-white px-16;
 }
 
 tr:nth-child(even) {
