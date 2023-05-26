@@ -19,6 +19,7 @@ const GestionMateriales = () => {
         <div className='m-10'>
           <h1>Gestión de Materiales</h1>
         </div>
+        <button>Agregar material</button>
         <div className='h-full flex flex-col'>
           <div className='h-full flex justify-center p-6'>
           <table className='block'>

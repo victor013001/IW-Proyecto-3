@@ -25,3 +25,11 @@ tr:nth-child(even) {
 td > div{
   @apply flex justify-center;
 }
+
+button, button[type='button'] {
+  @apply bg-green-color text-white font-semibold px-3 py-2 rounded-md hover:bg-green-hover;
+}
+
+select, input {
+  @apply rounded-md border border-gray-300 px-2 py-1 outline-none focus:border-green-hover;
+}
