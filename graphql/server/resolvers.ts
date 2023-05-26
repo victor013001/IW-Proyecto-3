@@ -25,6 +25,7 @@ const resolvers: Resolver = {
   Query: {
     user: async (parent, args, context) => {
       const { db, session } = context;
+      //console.log('session: ', session);
 
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
 
@@ -128,6 +129,40 @@ const resolvers: Resolver = {
 
       return null;
     },
+
+    createMovement: async(parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      const email = session?.user?.email ?? '';
+
+      if (hasRoleValidRole){
+        try{
+          const movement = await db.movement.create({
+            data: {
+              input: args.input,
+              output: args.output,
+              createdBy: {
+                connect: {
+                  email: email
+                }
+              },
+              material: {
+                connect: {
+                  name: args.name
+                }
+              }
+            }
+          });
+          return movement;
+        }catch(error){
+          return null;
+        }
+      }
+      return null;
+    }
   },
 }
 

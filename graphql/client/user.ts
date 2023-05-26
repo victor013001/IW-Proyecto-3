@@ -26,4 +26,6 @@ const GET_USERS = gql`
   }
 `;
 
+// todo hacer el query que va cambiar el rol de un usuario
+
 export { GET_USER, GET_USERS };
