@@ -245,7 +245,41 @@ const resolvers: Resolver = {
         }
       }
       return null;
-    }
+    },
+    upsertUserRol: async (parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN];
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      if(hasRoleValidRole){
+        try{
+          const role = await db.role.findFirst({
+            where: {
+              name: args.roleName
+            }
+          })
+          const roleId = role?.id;
+          if (!roleId){
+            return null;
+          }
+          const user = await db.user.upsert({
+            where:{
+              email: args.email
+            },
+            update: {
+              roleId: roleId,
+            },
+            create:{
+              email: args.email,
+              roleId: roleId
+            }
+          });
+          return user;
+        }catch(error){
+          return null;
+        }
+      }
+    },
   },
 }
 
