@@ -56,6 +56,7 @@ const typeDefs = gql`
     createUser(name: String!, email: String!): User
     createMaterial(name: String!, input: Int!): Material
     createMovement(name: String!, input: Int!, output: Int!): Movement
+    upsertUserRol(email: String!, roleName: String!): User
   }
 `;
 
