@@ -5,9 +5,9 @@ import { MaterialBalance } from 'types';
 import { AgregarMaterial } from './AgregarMaterial';
 import { ModalMateriales } from './modals/ModalMateriales';
 import { Loading } from './Loading';
+import PrivateComponent from './PrivateComponent';
 
 const GestionMateriales = () => {
-
   const { data, loading } = useQuery<{ materials: MaterialBalance[] }>(
     GET_MATERIALS_BALANCE,
     {
@@ -23,8 +23,10 @@ const GestionMateriales = () => {
           <h1>Gestión de Materiales</h1>
         </div>
         <div className='flex justify-between'>
-          <AgregarMaterial />
-          <ModalMateriales />
+          <PrivateComponent role='ADMIN'>
+            <AgregarMaterial />
+            <ModalMateriales />
+          </PrivateComponent>
         </div>
         <div className='h-full flex flex-col'>
           <div className='h-[80vh] flex justify-center p-6 overflow-y-auto'>
@@ -39,21 +41,21 @@ const GestionMateriales = () => {
               </thead>
               <tbody>
                 {data?.materials?.map((material) => (
-                    <tr key={`row_${material.id}`}>
-                      <td>
-                        <div>{material.id}</div>
-                      </td>
-                      <td>
-                        <div>{material.createdAt}</div>
-                      </td>
-                      <td>
-                        <div>{material.name}</div>
-                      </td>
-                      <td>
-                        <div>{material.balance}</div>
-                      </td>
-                    </tr>
-                  ))}
+                  <tr key={`row_${material.id}`}>
+                    <td>
+                      <div>{material.id}</div>
+                    </td>
+                    <td>
+                      <div>{material.createdAt}</div>
+                    </td>
+                    <td>
+                      <div>{material.name}</div>
+                    </td>
+                    <td>
+                      <div>{material.balance}</div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

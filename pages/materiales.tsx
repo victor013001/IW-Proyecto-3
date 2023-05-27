@@ -1,4 +1,5 @@
 import GestionMateriales from '@components/GestionMateriales';
+import PrivateRoute from '@components/PrivateRoute';
 import { MaterialesContextProvider } from '@context/materialesContext';
 import Layout from '@layouts/Layout';
 import Head from 'next/head';
@@ -12,11 +13,13 @@ const materiales = () => (
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <link rel='icon' href='/favicon.ico' />
     </Head>
-    <Layout>
-      <MaterialesContextProvider>
-        <GestionMateriales />
-      </MaterialesContextProvider>
-    </Layout>
+    <PrivateRoute>
+      <Layout>
+        <MaterialesContextProvider>
+          <GestionMateriales />
+        </MaterialesContextProvider>
+      </Layout>
+    </PrivateRoute>
   </>
 );
 
