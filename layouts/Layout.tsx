@@ -5,8 +5,7 @@ interface LayoutProps {
 }
 
 
-const Layout = ({children}: LayoutProps) => {
-  return (
+const Layout = ({children}: LayoutProps) => (
     <main className='flex h-screen w-full'>
         <aside className='debug w-96 flex flex-col justify-between px-3 py-5 bg-base-color'> 
             <div className='flex flex-col gap-4'>
@@ -25,6 +24,5 @@ const Layout = ({children}: LayoutProps) => {
         </section>
     </main>
   )
-}
 
 export default Layout

@@ -38,8 +38,7 @@ const GestionMateriales = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.materials?.map((material) => {
-                  return (
+                {data?.materials?.map((material) => (
                     <tr key={`row_${material.id}`}>
                       <td>
                         <div>{material.id}</div>
@@ -54,8 +53,7 @@ const GestionMateriales = () => {
                         <div>{material.balance}</div>
                       </td>
                     </tr>
-                  );
-                })}
+                  ))}
               </tbody>
             </table>
           </div>
