@@ -24,8 +24,26 @@ query Movements($name: String!) {
     createdAt
     input
     output
+    material {
+      name
+    }
   }
 }
 `;
 
-export {CREATE_MOVEMENT, GET_MOVEMENTS_BY_NAME};
+const GET_MOVEMENT = gql`
+  query Movement {
+    movement {
+      id
+      input
+      output
+      createdAt
+      material {
+        name
+      }
+    }
+  } 
+`;
+
+
+export {CREATE_MOVEMENT, GET_MOVEMENTS_BY_NAME, GET_MOVEMENT};
