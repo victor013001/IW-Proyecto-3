@@ -26,6 +26,15 @@ const GET_USERS = gql`
   }
 `;
 
-// todo hacer el query que va cambiar el rol de un usuario
+const UPSERT_USER = gql`
+mutation Mutation($email: String!, $roleName: String!) {
+  upsertUserRol(email: $email, roleName: $roleName) {
+    email
+    role {
+      name
+    }
+  }
+}
+`;
 
-export { GET_USER, GET_USERS };
+export { GET_USER, GET_USERS, UPSERT_USER };
