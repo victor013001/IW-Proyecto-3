@@ -9,7 +9,7 @@ const MaterialesContext = createContext<MaterialesContextProps>(
   {} as MaterialesContextProps
 );
 
-export const useMaterialesContext = () => useContext(MaterialesContext);
+export const useMaterialsContext = () => useContext(MaterialesContext);
 
 interface MaterialesContextProviderProps {
 	children: JSX.Element;

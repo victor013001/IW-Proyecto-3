@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client';
 import { GET_MATERIALS_BALANCE } from 'graphql/client/material';
 import React from 'react'
 import { MaterialBalance } from 'types';
-import ActionButtons from './ActionButtons';
+import { AgregarMaterial } from './AgregarMaterial';
+import { ModalMateriales } from './modals/ModalMateriales';
 
 
 const GestionMateriales = () => {
@@ -23,7 +24,8 @@ const GestionMateriales = () => {
         <div className='m-10'>
           <h1>Gestión de Materiales</h1>
         </div>
-        <ActionButtons/>
+        <AgregarMaterial/>
+        <ModalMateriales/>
         <div className='h-full flex flex-col'>
           <div className='h-full flex justify-center p-6'>
           <table className='block'>
@@ -36,8 +38,7 @@ const GestionMateriales = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.materials.map((material) => {
-                  console.log(material)
+                {data?.materials?.map((material) => {
                   return(
                     <tr key={`row_${material.id}`}>
                       <td>
