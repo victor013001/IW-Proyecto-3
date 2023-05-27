@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { GET_MATERIALS_BALANCE } from 'graphql/client/material';
+import { GET_MATERIAL, GET_MATERIALS_BALANCE } from 'graphql/client/material';
 import React from 'react'
 import { MaterialBalance } from 'types';
 import { AgregarMaterial } from './AgregarMaterial';
@@ -8,13 +8,16 @@ import { ModalMateriales } from './modals/ModalMateriales';
 
 const GestionMateriales = () => {
 
-  
+  interface Material{
+    id: string;
+    name: string;
+  }
 
-  const {data, loading} =
-  useQuery<{materials: MaterialBalance[]}>(GET_MATERIALS_BALANCE,
-     {
+    const {data, loading} =
+    useQuery<{materials: MaterialBalance[]}>(GET_MATERIALS_BALANCE,
+    {
       fetchPolicy:'network-only',
-  });
+    });
   if (loading) return <div>Loading...</div>
 
 
@@ -52,7 +55,7 @@ const GestionMateriales = () => {
                       </td>
                       <td>
                         <div>{material.balance}</div>
-                      </td>      
+                      </td>     
                     </tr>
                   )
                 })}
