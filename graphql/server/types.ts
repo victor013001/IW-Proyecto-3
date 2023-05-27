@@ -50,7 +50,6 @@ const typeDefs = gql`
     users: [User]
     materials: [MaterialBalance]
     movements(name: String!): [Movement]
-    movement: [Movement]
     material: [Material]
   }
 

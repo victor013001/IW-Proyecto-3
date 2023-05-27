@@ -3,7 +3,7 @@ import Modal from './Modal'
 import { useMovivientosContext } from '@context/movimientosContext';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_MATERIAL } from 'graphql/client/material';
-import { CREATE_MOVEMENT } from 'graphql/client/movements';
+import { CREATE_MOVEMENT, GET_MOVEMENTS_BY_NAME } from 'graphql/client/movements';
 import ReactLoading from 'react-loading';
 import { toast } from 'react-toastify';
 
@@ -31,10 +31,12 @@ const ModalMovimientos = () => {
 					name: formData.materialType,
 					input: formData.input,
 					output: formData.output
-				}
+				},
+				refetchQueries:[GET_MOVEMENTS_BY_NAME]
 
 			});
 			toast.success('Movimiento creado exitosamente')
+			setOpenModalMovimientos(false);
 			console.log(result);	
 		}catch (e){
 			console.error(e);

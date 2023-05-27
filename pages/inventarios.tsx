@@ -4,14 +4,13 @@ import PrivateRoute from '@components/PrivateRoute'
 import { ModalMovimientos } from '@components/modals/ModalMovimientos'
 import { MovimientosContextProvider } from '@context/movimientosContext'
 import Layout from '@layouts/Layout'
-import { Movement } from '@prisma/client'
-import { GET_MOVEMENT, GET_MOVEMENTS_BY_NAME } from 'graphql/client/movements'
+import { GET_MOVEMENTS_BY_NAME } from 'graphql/client/movements'
 import Head from 'next/head'
 import { Id } from 'react-toastify'
 import { ExtendedMovement } from 'types'
 import { GET_MATERIAL } from 'graphql/client/material'
 import React, { useState } from 'react'
-import { ALL } from 'dns'
+import ReactLoading from 'react-loading'
 
 
 const inventarios = () => {
@@ -81,7 +80,13 @@ const InventariosTable = ({name}:InventariosTableProps)=>{
 		fetchPolicy: 'cache-first'
 	});
   
-	if (loading) return <div>Loading...</div>
+	if (loading) return (
+		<div className='w-full h-screen flex flex-col gap-4 items-center justify-center'>
+			<h1 className=''>Loading...</h1>
+			<ReactLoading type='spinningBubbles' height={80} width={80} color='green'/>
+		</div>
+	);
+	
 
 	return (
     <div className='h-full flex flex-col'>
