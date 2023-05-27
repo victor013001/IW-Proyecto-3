@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, createContext, useContext, useState } from "r
 
 interface MaterialesContextProps {
 	openModalMateriales: boolean;
-	setOpenModalMovimientos: Dispatch<SetStateAction<boolean>>;
+	setOpenModalMateriales: Dispatch<SetStateAction<boolean>>;
 }
 
 const MaterialesContext = createContext<MaterialesContextProps>(
