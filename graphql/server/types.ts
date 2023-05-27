@@ -49,11 +49,13 @@ const typeDefs = gql`
     user(email: String!): User
     users: [User]
     materials: [MaterialBalance]
+    movements(name: String!): [Movement]
   }
 
   type Mutation {
     createUser(name: String!, email: String!): User
     createMaterial(name: String!, input: Int!): Material
+    createMovement(name: String!, input: Int!, output: Int!): Movement
   }
 `;
 
