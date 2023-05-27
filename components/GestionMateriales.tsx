@@ -38,7 +38,7 @@ const GestionMateriales = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.materials?.map((material) => {
+                {data?.materials.map((material) => {
                   return(
                     <tr key={`row_${material.id}`}>
                       <td>
