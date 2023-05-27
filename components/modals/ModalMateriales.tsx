@@ -17,8 +17,6 @@ const ModalMateriales = () => {
   const [createMaterial, { data, loading }] = useMutation(CREATE_MATERIAL);
   const { openModalMateriales, setOpenModalMateriales } = useMaterialsContext();
 
-  if (loading) return <div>Creando...</div>;
-
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -29,7 +27,7 @@ const ModalMateriales = () => {
         },
       });
 
-      if (data?.data?.createMaterial === null) {
+      if (data?.createMaterial == null) {
         toast.warning('Ya existe un material con ese nombre');
         return;
       }
