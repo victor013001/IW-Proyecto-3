@@ -4,6 +4,7 @@ import React from 'react'
 import { MaterialBalance } from 'types';
 import { AgregarMaterial } from './AgregarMaterial';
 import { ModalMateriales } from './modals/ModalMateriales';
+import { Loading } from './Loading';
 
 
 const GestionMateriales = () => {
@@ -18,19 +19,21 @@ const GestionMateriales = () => {
     {
       fetchPolicy:'network-only',
     });
-  if (loading) return <div>Loading...</div>
+  if (loading) return <Loading/>;
 
 
   return (
-    <div className='border flex flex-row h-[100%]'>
-      <div className='border w-[80%] flex flex-col justify-between items-center '>
-        <div className='m-10'>
+    <div className='flex h-full w-full flex-col p-4 gap-2'>
+      <div>
+        <div className='flex justify-center'>
           <h1>Gestión de Materiales</h1>
         </div>
-        <AgregarMaterial/>
-        <ModalMateriales/>
+        <div className='flex justify-between'>
+          <AgregarMaterial/>
+          <ModalMateriales/>    
+        </div>
         <div className='h-full flex flex-col'>
-          <div className='h-full flex justify-center p-6'>
+          <div className='h-[80vh] flex justify-center p-6 overflow-y-auto'>
           <table className='block'>
               <thead>
                 <tr>
@@ -41,7 +44,7 @@ const GestionMateriales = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.materials.map((material) => {
+                {data?.materials?.map((material) => {
                   return(
                     <tr key={`row_${material.id}`}>
                       <td>
