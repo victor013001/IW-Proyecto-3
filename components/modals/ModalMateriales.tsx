@@ -19,27 +19,28 @@ const ModalMateriales = () => {
 
 	const [createMaterial, {data, loading}] = useMutation(CREATE_MATERIAL);
 
-	if (loading) return <div>Creando...</div>
+	if (loading) return <div>Creando...</div>;
 	
 
   	const {openModalMateriales, setOpenModalMateriales} = useMaterialsContext();
 
   	const submitForm = (e:FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-	};
-
-	try{
-		const data =createMaterial({
-			variables: {
-				name: formData.name,
-				input: formData.quantity,
-			},
-		 });
-		toast.success('Material creado exitosamente');
-		setOpenModalMateriales(false);	
+		try{
+			const data = createMaterial({
+				variables: {
+					name: formData.name,
+					input: formData.quantity,
+				},
+			 });
+			toast.success('Material creado exitosamente');
+			setOpenModalMateriales(false);	
 		}catch(error){
 			toast.error('Error al crear el material');
 		}
+	};
+
+	
 
   return (
     <Modal
@@ -81,7 +82,7 @@ const ModalMateriales = () => {
 				</label>
 				<div className='w-full flex justify-center gap-6'>
 						<button type='button' onClick={()=>setOpenModalMateriales(false)} className='secondary'>Cancelar</button>
-						<button type='button'>Crear</button>
+						<button type='submit'>Crear</button>
 				</div>
 			</form>	
 		</div>

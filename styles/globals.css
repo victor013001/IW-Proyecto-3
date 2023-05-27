@@ -26,7 +26,7 @@ td > div{
   @apply flex justify-center;
 }
 
-button, button[type='button'] {
+button, button[type='button'], button[type='submit'] {
   @apply bg-green-color text-white font-semibold px-3 py-2 rounded-md hover:bg-green-hover;
 }
 
