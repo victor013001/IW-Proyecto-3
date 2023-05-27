@@ -1,4 +1,4 @@
-import { useMaterialsContext } from '@context/materialesContext';
+import { useMaterialesContext } from '@context/materialesContext';
 import Modal from './Modal';
 import React, { FormEvent } from 'react'
 
@@ -6,14 +6,17 @@ import React, { FormEvent } from 'react'
 
 const ModalMateriales = () => {
 
-  const {openModalMateriales, setOpenModalMateriales} = useMaterialsContext();
+  const {openModalMateriales, setOpenModalMateriales} = useMaterialesContext();
 
   const submitForm = (e:FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 	};
 
   return (
-    <Modal>
+    <Modal
+	open={openModalMateriales}
+	setOpen={setOpenModalMateriales}
+	modalTitle='Agregar nuevo material'>
         <div>
       	<form onSubmit={submitForm} className='flex flex-col gap-3'>
 				<label htmlFor='date' className='flex flex-col'>

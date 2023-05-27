@@ -2,10 +2,12 @@ import { useQuery } from '@apollo/client';
 import { GET_MATERIALS_BALANCE } from 'graphql/client/material';
 import React from 'react'
 import { MaterialBalance } from 'types';
+import ActionButtons from './ActionButtons';
+
 
 const GestionMateriales = () => {
 
-  const {setOpenModalMateriales} = useMaterialesContext();
+  
 
   const {data, loading} =
   useQuery<{materials: MaterialBalance[]}>(GET_MATERIALS_BALANCE,
@@ -21,7 +23,7 @@ const GestionMateriales = () => {
         <div className='m-10'>
           <h1>Gestión de Materiales</h1>
         </div>
-        <button type='button' onClick={() => setOpenModalMateriales()}>Agregar material</button>
+        <ActionButtons/>
         <div className='h-full flex flex-col'>
           <div className='h-full flex justify-center p-6'>
           <table className='block'>
