@@ -17,7 +17,7 @@ const ModalMateriales = () => {
 		quantity: 0,
 	});
 
-	const [createMaterial, {loading}] = useMutation(CREATE_MATERIAL);
+	const [createMaterial, {data, loading}] = useMutation(CREATE_MATERIAL);
 
 	if (loading) return <div>Creando...</div>
 	
@@ -29,7 +29,7 @@ const ModalMateriales = () => {
 	};
 
 	try{
-		const {} =createMaterial({
+		const data =createMaterial({
 			variables: {
 				name: formData.name,
 				input: formData.quantity,
