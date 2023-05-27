@@ -5,6 +5,7 @@ import { useMutation} from '@apollo/client';
 import { CREATE_MATERIAL } from 'graphql/client/material';
 import { toast } from 'react-toastify';
 import { create } from 'lodash';
+import { Loading } from '@components/Loading';
 
 
 
@@ -59,7 +60,7 @@ const ModalMateriales = () => {
 	modalTitle='Agregar nuevo material'>
         <div>
 			{loading ? (
-				<div>Creando...</div>
+				<Loading/>
 			): (
 				<form onSubmit={submitForm} className='flex flex-col gap-3'>
 				<label htmlFor='name' className='flex flex-col'>
