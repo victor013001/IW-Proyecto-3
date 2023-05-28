@@ -10,6 +10,7 @@ const GET_USER = gql`
       role {
         name
       }
+      image
     }
   }
 `;
@@ -27,4 +28,15 @@ const GET_USERS = gql`
   }
 `;
 
-export { GET_USER, GET_USERS };
+const UPSERT_USER = gql`
+mutation Mutation($email: String!, $roleName: String!) {
+  upsertUserRol(email: $email, roleName: $roleName) {
+    email
+    role {
+      name
+    }
+  }
+}
+`;
+
+export { GET_USER, GET_USERS, UPSERT_USER };

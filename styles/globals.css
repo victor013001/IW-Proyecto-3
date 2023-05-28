@@ -17,3 +17,62 @@
 .debug {
   border: 1px solid red;
 }
+
+h1 {
+  @apply text-3xl font-bold text-gray-800;
+}
+
+td,
+th {
+  border: 1px solid black;
+}
+
+th {
+  @apply bg-green-color text-white px-16;
+}
+
+tr:nth-child(even) {
+  @apply bg-gray-200;
+}
+
+td > div {
+  @apply flex justify-center;
+}
+
+button,
+button[type='button'],
+button[type='submit'] {
+  @apply bg-green-color text-white font-semibold px-3 py-2 rounded-md hover:bg-green-hover;
+}
+
+select,
+input {
+  @apply rounded-md border border-gray-300 px-2 py-1 outline-none focus:border-green-hover;
+}
+
+button.secondary {
+  @apply bg-gray-300 text-gray-800 hover:bg-gray-200;
+}
+
+.pagination-container {
+  @apply flex p-0 justify-center items-center;
+}
+
+.pagination-item {
+  margin: 0 5px;
+}
+
+.pagination-link {
+  padding: 5px 10px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination-link:hover {
+  @apply bg-pagination-link-hover;
+}
+
+.active {
+  @apply font-bold text-white;
+}
