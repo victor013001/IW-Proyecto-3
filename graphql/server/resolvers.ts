@@ -280,6 +280,13 @@ const resolvers: Resolver = {
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN];
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
 
+      const { roleName } = args;
+      const { email } = args;
+
+      if (!roleName || !email) {
+        return null;
+      }
+
       if (hasRoleValidRole) {
         try {
           const role = await db.role.findFirst({
