@@ -9,7 +9,7 @@ const Sidebar = () => {
   const { userData: data } = useUserData();
   const userImage = data?.user.image || '';
   return (
-    <aside className='flex flex-col h-full w-72 bg-color-sidebar justify-between'>
+    <aside className='flex flex-col min-h-screen w-72 bg-color-sidebar justify-between'>
       <div className='flex flex-col gap-2'>
         <div className='flex justify-centerrounded-full h-48 w-48 self-center items-stretch pt-6'>
           <Image
@@ -28,8 +28,8 @@ const Sidebar = () => {
         </div>
         <nav className='pt-4'>
           <ul className='flex flex-col gap-2'>
-              <SidebarLink href='/inventarios' title='Inventarios' />
-              <SidebarLink href='/materiales' title='Materiales' />
+            <SidebarLink href='/inventarios' title='Inventarios' />
+            <SidebarLink href='/materiales' title='Materiales' />
             <PrivateComponent role='ADMIN'>
               <SidebarLink href='/usuarios' title='Usuarios' />
             </PrivateComponent>
