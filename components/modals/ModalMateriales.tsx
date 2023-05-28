@@ -88,6 +88,7 @@ const ModalMateriales = () => {
               />
             </label>
             <div className='w-full flex justify-center gap-6'>
+              <button type='submit'>Crear</button>
               <button
                 type='button'
                 onClick={() => setOpenModalMateriales(false)}
@@ -95,7 +96,6 @@ const ModalMateriales = () => {
               >
                 Cancelar
               </button>
-              <button type='submit'>Crear</button>
             </div>
           </form>
         )}
