@@ -23,7 +23,11 @@ export interface MaterialBalance {
   id: string;
   createdAt: string;
   name: String;
-  balance: number;
+  balance: number;
+}
+
+export interface MaterialBalanceResult {
+  balance: number;
 }
 
 export interface ExtendedUser extends User {

@@ -1,5 +1,5 @@
 import { Enum_RoleName, PrismaClient } from '@prisma/client';
-import { Resolver } from 'types';
+import { MaterialBalanceResult, Resolver } from 'types';
 import { Session } from "next-auth/core/types";
 
 const resolvers: Resolver = {
@@ -148,7 +148,6 @@ const resolvers: Resolver = {
         try {
           const movements = await db.movement.findMany({
             where: {
-              createdAt: args.createdAt,
               material: {
                 name: args.name
               }
@@ -251,7 +250,20 @@ const resolvers: Resolver = {
         if ((input == 0 && output == 0) || (input > 0 && output != 0) || (output > 0 && input != 0)) {
           return null;
         }
+
         try {
+
+          const materialBalance = await db.$queryRaw < MaterialBalanceResult[]> `
+            SELECT "balance" FROM "material_balance" WHERE "name" = ${args.name};
+          `;
+
+          const balance = materialBalance[0].balance ?? 0;
+
+          if (output > balance) {
+            return null;
+          }
+
+
           const movement = await db.movement.create({
             data: {
               input: input,
