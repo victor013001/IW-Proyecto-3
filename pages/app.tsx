@@ -4,28 +4,24 @@ import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 
-const Home = () => {
+const app = () => {
   const router= useRouter();
   const {data:session, status}=useSession();
   console.log('status', status);
   if (status === 'loading') return <div>Loading...</div>;
-  if(session){
-    router.push('/app')
+  if(!session){
+   router.replace('/')
   }
   return (  
-    <div className='body-landing h-screen w-full'>
-      <Head>
-        <title>ConstruStock</title>
-        <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1'
-        ></meta>
-      </Head>
-      <body>
-        <Header/>
-      </body>
-    </div> 
+    <>    
+    <body className='flex bg-white'>
+        <Sidebar/>
+        <main className='bg-white'>
+
+        </main>
+    </body>
+    </>  
   );
 };
 
-export default Home;
+export default app;
