@@ -102,8 +102,25 @@ const resolvers: Resolver = {
       const { db, session } = context;
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
-      if (hasRoleValidRole){
-        try{
+      if (hasRoleValidRole) {
+
+        const { name } = args;
+
+        if (!name) {
+          try {
+            const movements = await db.movement.findMany({
+              orderBy: {
+                createdAt: 'desc'
+              },
+              take: 50
+            });
+            return movements;
+          } catch (error) {
+            return null;
+          }
+        }
+
+        try {
           const movements = await db.movement.findMany({
             where: {
               createdAt: args.createdAt,
@@ -116,7 +133,7 @@ const resolvers: Resolver = {
             }
           });
           return movements;
-        }catch(error){
+        } catch (error) {
           return null;
         }
       }

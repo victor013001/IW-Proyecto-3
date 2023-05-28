@@ -38,4 +38,30 @@ button.secondary {
   @apply bg-gray-300 text-gray-800 hover:bg-gray-200;
 }
 
+.pagination-container {
+  @apply flex p-0 justify-center items-center
+
+}
+
+.pagination-item {
+  margin: 0 5px;
+}
+
+.pagination-link {
+  padding: 5px 10px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination-link:hover {
+  @apply bg-pagination-link-hover;
+}
+
+.active {
+  @apply font-bold text-white
+  
+  
+}
+
 
