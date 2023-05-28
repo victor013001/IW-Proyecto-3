@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <aside className='flex flex-col h-screen w-72 bg-color-sidebar justify-between'>
       <div className='flex flex-col gap-2'>
-        <div className='flex justify-centerrounded-full h-48 w-48 self-center items-stretch'>
+        <div className='flex justify-centerrounded-full h-48 w-48 self-center items-stretch pt-6'>
           <Image
             src={userImage}
             alt='logo'
@@ -25,21 +25,21 @@ const Sidebar = () => {
             {data?.user.name}
           </span>
         </div>
-        <nav>
+        <nav className='pt-4'>
           <ul className='flex flex-col gap-2'>
             <Link href='/inventarios'>
-              <li className='bg-buttom-sidebar m-4 p-4 rounded-lg font-semibold text-xl hover:cursor-pointer hover:bg-buttom-hover-sidebar'>
+              <li className='bg-buttom-sidebar m-3 p-4 rounded-lg font-semibold text-xl text-white hover:cursor-pointer hover:bg-buttom-hover-sidebar flex justify-center'>
                 Inventarios
               </li>
             </Link>
             <Link href='/materiales'>
-              <li className='bg-buttom-sidebar m-4 p-4 rounded-lg font-semibold text-xl hover:cursor-pointer hover:bg-buttom-hover-sidebar'>
+              <li className='bg-buttom-sidebar m-3 p-4 rounded-lg font-semibold text-xl text-white hover:cursor-pointer hover:bg-buttom-hover-sidebar flex justify-center'>
                 Materiales
               </li>
             </Link>
             <PrivateComponent role='ADMIN'>
               <Link href='/usuarios'>
-                <li className='bg-buttom-sidebar m-4 p-4 rounded-lg font-semibold text-xl hover:cursor-pointer hover:bg-buttom-hover-sidebar'>
+                <li className='bg-buttom-sidebar m-3 p-4 rounded-lg font-semibold text-xl text-white hover:cursor-pointer hover:bg-buttom-hover-sidebar flex justify-center'>
                   Usuarios
                 </li>
               </Link>
@@ -48,7 +48,7 @@ const Sidebar = () => {
         </nav>
       </div>
       <button
-        className='m-4 p-2 rounded-lg font-semibold text-xl hover:cursor-pointer bg-buttom-logout-sidebar hover:bg-buttom-logout-hover-sidebar'
+        className='m-4 p-2 rounded-lg font-semibold text-xl hover:cursor-pointer'
         type='button'
         onClick={() => signOut()}
       >

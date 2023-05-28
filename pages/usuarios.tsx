@@ -27,7 +27,7 @@ const usuarios = () => (
 
 const ListaUsuario = () => (
   <div className='flex w-full flex-col gap-3 pt-4'>
-    <div className='flex w-full justify-center'>
+    <div className='flex w-full justify-center pt-2'>
       <h1>Gestión de usuarios</h1>
     </div>
     <UserActionButtons />

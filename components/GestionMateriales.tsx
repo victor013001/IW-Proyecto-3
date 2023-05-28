@@ -1,28 +1,43 @@
 import { useQuery } from '@apollo/client';
 import { GET_MATERIALS_BALANCE } from 'graphql/client/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { MaterialBalance } from 'types';
 import { AgregarMaterial } from './AgregarMaterial';
 import { ModalMateriales } from './modals/ModalMateriales';
 import { Loading } from './Loading';
 import PrivateComponent from './PrivateComponent';
+import ReactPaginate from 'react-paginate';
 
 const GestionMateriales = () => {
-  const { data, loading } = useQuery<{ materials: MaterialBalance[] }>(
+  const { data } = useQuery<{ materials: MaterialBalance[] }>(
     GET_MATERIALS_BALANCE,
     {
       fetchPolicy: 'network-only',
     }
   );
-  if (loading) return <Loading />;
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 25; // Cantidad de elementos por página
+
+  const handlePageChange = (selected: { selected: number }) => {
+    setCurrentPage(selected.selected);
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedData = data?.materials.slice(startIndex, endIndex);
+
+  if (!data?.materials || data.materials.length === 0) {
+    return <Loading />;
+  }
 
   return (
     <div className='flex h-full w-full flex-col p-4 gap-2'>
       <div className='flex h-full w-full flex-col gap-3'>
-        <div className='flex justify-center'>
+        <div className='flex justify-center pt-2'>
           <h1>Gestión de Materiales</h1>
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-center pt-2'>
           <PrivateComponent role='ADMIN'>
             <AgregarMaterial />
             <ModalMateriales />
@@ -40,7 +55,7 @@ const GestionMateriales = () => {
                 </tr>
               </thead>
               <tbody>
-                {data?.materials?.map((material) => (
+                {paginatedData?.map((material) => (
                   <tr key={`row_${material.id}`}>
                     <td>
                       <div>{material.id}</div>
@@ -59,10 +74,29 @@ const GestionMateriales = () => {
               </tbody>
             </table>
           </div>
+          <div className='h-fit flex flex-row justify-center'>
+            <ReactPaginate
+              previousLabel={<span className='pagination-label'>Anterior</span>}
+              nextLabel={<span className='pagination-label'>Siguiente</span>}
+              breakLabel={'...'}
+              pageCount={Math.ceil(data.materials.length / itemsPerPage)}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageChange}
+              containerClassName={'pagination-container'}
+              pageClassName={'pagination-item'}
+              pageLinkClassName={'pagination-link'}
+              previousClassName={'pagination-item'}
+              previousLinkClassName={'pagination-link'}
+              nextClassName={'pagination-item'}
+              nextLinkClassName={'pagination-link'}
+              activeClassName={'active'}
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default GestionMateriales;
+export {GestionMateriales};

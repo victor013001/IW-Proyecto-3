@@ -1,4 +1,4 @@
-import GestionMateriales from '@components/GestionMateriales';
+import {GestionMateriales} from '@components/GestionMateriales';
 import PrivateRoute from '@components/PrivateRoute';
 import { MaterialesContextProvider } from '@context/materialesContext';
 import Layout from '@layouts/Layout';

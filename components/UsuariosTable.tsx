@@ -24,7 +24,7 @@ const UsuariosTable = () => {
   }
 
   return (
-    <div className='h-full flex flex-col gap-3'>
+    <div className='h-full flex flex-col gap-3 pt-2'>
       <div className='h-[70vh] flex justify-center overflow-y-auto'>
         <table className='block'>
           <thead>

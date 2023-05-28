@@ -20,6 +20,11 @@ const InventariosTable = ({ name }: InventariosTableProps) => {
     }
   );
 
+  let totalMaterial = 0;
+  data?.movements.forEach((el) => {
+    totalMaterial += el.input - el.output;
+  });
+
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 25; // Cantidad de elementos por página
 
@@ -66,6 +71,14 @@ const InventariosTable = ({ name }: InventariosTableProps) => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className='flex justify-center'>
+        <div>
+          <div className='flex rounded-md bg-green-color p-2'>
+            <h2 className='pr-2 font-bold text-base text-white'>Saldo del material:</h2>
+            <span className='text-white text-base'>{totalMaterial}</span>
+          </div>
+        </div>
       </div>
       <div className='h-fit flex flex-row justify-center'>
         <ReactPaginate
