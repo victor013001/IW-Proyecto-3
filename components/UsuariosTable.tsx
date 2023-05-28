@@ -37,21 +37,21 @@ const UsuariosTable = () => {
           </thead>
           <tbody>
             {paginatedData?.map((dato) => (
-                <tr key={`row_${dato.id}`}>
-                  <td>
-                    <div>{dato.id}</div>
-                  </td>
-                  <td>
-                    <div>{dato.createdAt.toString()}</div>
-                  </td>
-                  <td>
-                    <div>{dato.email}</div>
-                  </td>
-                  <td>
-                    <div>{dato.role.name}</div>
-                  </td>
-                </tr>
-              ))}
+              <tr key={`row_${dato.id}`}>
+                <td>
+                  <div>{dato.id}</div>
+                </td>
+                <td>
+                  <div>{dato.createdAt.toString()}</div>
+                </td>
+                <td>
+                  <div>{dato.email}</div>
+                </td>
+                <td>
+                  <div>{dato.role?.name}</div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
