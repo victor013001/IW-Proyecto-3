@@ -83,6 +83,7 @@ const ModalMovimientos = () => {
             <select
               name='material'
               value={formData.materialType}
+              required
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -108,6 +109,7 @@ const ModalMovimientos = () => {
             <select
               name='movimiento'
               value={formData.movement}
+              required
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, movement: e.target.value }))
               }
@@ -124,8 +126,9 @@ const ModalMovimientos = () => {
             <input
               type='number'
               name='valor'
-              min={0}
+              min={1}
               step={1}
+              required
               placeholder='0'
               value={value}
               onChange={(e) => {
