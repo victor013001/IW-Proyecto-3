@@ -74,5 +74,9 @@ button.secondary {
 }
 
 .active {
-  @apply font-bold text-white;
+  @apply font-bold text-white bg-buttom-sidebar-active m-3 p-4 rounded-lg hover:bg-buttom-hover-sidebar hover:cursor-pointer text-xl underline;
+}
+
+.non-active {
+  @apply  text-white bg-buttom-sidebar m-3 p-4 rounded-lg  hover:cursor-pointer hover:bg-buttom-hover-sidebar font-semibold text-xl;
 }

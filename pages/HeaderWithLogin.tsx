@@ -35,7 +35,7 @@ const HeaderWithLogin = () => {
         href='/inventarios'
         className='bg-color-background-buttom p-2  text-white font-semibold rounded-md hover:cursor-pointer hover:scale-105'
         >
-            Ir a la seccion de inventarios
+            Ir a la sección de inventarios
         </Link>
     </div>
     </div>
