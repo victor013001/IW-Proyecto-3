@@ -1,4 +1,5 @@
 import { signOut } from "next-auth/react"
+import PrivateComponent from "./PrivateComponent"
 
 const Sidebar = () => {
   return (
@@ -11,7 +12,9 @@ const Sidebar = () => {
           <ul className='flex flex-col gap-2'>
             <li className="bg-buttom-sidebar m-4 p-4 rounded-lg font-semibold text-xl hover:cursor-pointer hover:bg-buttom-hover-sidebar">Inventarios</li>
             <li className="bg-buttom-sidebar m-4 p-4 rounded-lg font-semibold text-xl hover:cursor-pointer hover:bg-buttom-hover-sidebar">Materiales</li>
+            <PrivateComponent role='ADMIN'>        
             <li className="bg-buttom-sidebar m-4 p-4 rounded-lg font-semibold text-xl hover:cursor-pointer hover:bg-buttom-hover-sidebar">Usuarios</li>
+          </PrivateComponent>   
           </ul>
         </nav>
       </div> 
