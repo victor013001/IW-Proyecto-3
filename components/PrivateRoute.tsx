@@ -3,6 +3,7 @@ import { Enum_RoleName } from '@prisma/client';
 import Link from 'next/link';
 import React from 'react';
 import { Loading } from './Loading';
+import { SingIn } from './SingIn';
 
 interface PrivateRouteProps {
   role?: Enum_RoleName;
@@ -21,7 +22,7 @@ const PrivateRoute = ({ role, children }: PrivateRouteProps) => {
           Se requiere autenticación para acceder a esta ruta. Por favor, inicia
           sesión para continuar.
         </h1>
-        <Link href='/'>Ir a la página principal.</Link>
+        <SingIn />
       </div>
     );
 

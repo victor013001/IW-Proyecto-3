@@ -1,5 +1,5 @@
-import { signIn } from 'next-auth/react';
 import { MdFacebook, MdWhatsapp } from 'react-icons/md';
+import { SingIn } from './SingIn';
 
 const Header = () => (
   <header className='flex  w-full'>
@@ -8,12 +8,7 @@ const Header = () => (
         <span className='text-white font-bold text-4xl'>ConstruStock</span>
       </div>
       <div className='flex gap-9 mt-3 mr-24 mb-3'>
-        <button
-          onClick={() => signIn('auth0')}
-          className='bg-color-background-buttom p-2  text-white font-semibold rounded-md hover:cursor-pointer hover:scale-105'
-        >
-          Iniciar Sesión
-        </button>
+        <SingIn />
         <div>
           <a
             href='https://www.facebook.com/'
@@ -24,7 +19,7 @@ const Header = () => (
         </div>
         <div>
           <a
-            href='https://web.whatsapp.com/'
+            href='https://wa.me'
             className='text-green-600 text-4xl hover:cursor-pointer'
           >
             <MdWhatsapp />
