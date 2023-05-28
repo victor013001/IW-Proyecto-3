@@ -5,11 +5,8 @@ import ReactPaginate from 'react-paginate';
 import { ExtendedUser } from 'types';
 import { Loading } from './Loading';
 
-
 const UsuariosTable = () => {
-  const { data } = useQuery<{ users: ExtendedUser[] }>(GET_USERS, {
-    fetchPolicy: 'cache-first',
-  });
+  const { data } = useQuery<{ users: ExtendedUser[] }>(GET_USERS);
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 25; // Cantidad de elementos por página
