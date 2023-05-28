@@ -111,6 +111,18 @@ const resolvers: Resolver = {
 
       return null;
     },
+    material: async (parent, args, context) => {
+      const {db, session} = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      if (hasRoleValidRole) {
+        const materials = await db.material.findMany();
+        return materials;
+      };
+      return null;
+    },
     movements: async (parent, args, context) => {
       const { db, session } = context;
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
