@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.body-landing{
-  background-image: url("/media/background.jpg");
+.body-landing {
+  background-image: url('/media/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
-.img-logo{
-  background-image: url("/media/bg.jpg");
+.img-logo {
+  background-image: url('/media/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -28,7 +28,7 @@ th {
 }
 
 th {
-  @apply bg-green-color text-white px-20;
+  @apply bg-green-color text-white px-14;
 }
 
 tr:nth-child(even) {
@@ -74,5 +74,9 @@ button.secondary {
 }
 
 .active {
-  @apply font-bold text-white;
+  @apply font-bold text-white bg-buttom-sidebar-active m-3 p-4 rounded-lg hover:bg-buttom-hover-sidebar hover:cursor-pointer text-xl underline;
+}
+
+.non-active {
+  @apply text-white bg-buttom-sidebar m-3 p-4 rounded-lg  hover:cursor-pointer hover:bg-buttom-hover-sidebar font-semibold text-xl;
 }

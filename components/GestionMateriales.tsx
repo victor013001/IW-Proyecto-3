@@ -17,7 +17,7 @@ const GestionMateriales = () => {
   );
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 25; // Cantidad de elementos por página
+  const itemsPerPage = 20; // Cantidad de elementos por página
 
   const handlePageChange = (selected: { selected: number }) => {
     setCurrentPage(selected.selected);
@@ -74,7 +74,8 @@ const GestionMateriales = () => {
               </tbody>
             </table>
           </div>
-          <div className='h-fit flex flex-row justify-center'>
+        </div>
+        <div className='h-fit flex flex-row justify-center'>
             <ReactPaginate
               previousLabel={<span className='pagination-label'>Anterior</span>}
               nextLabel={<span className='pagination-label'>Siguiente</span>}
@@ -93,7 +94,6 @@ const GestionMateriales = () => {
               activeClassName={'active'}
             />
           </div>
-        </div>
       </div>
     </div>
   );

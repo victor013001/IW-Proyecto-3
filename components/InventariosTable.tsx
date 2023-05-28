@@ -26,7 +26,7 @@ const InventariosTable = ({ name }: InventariosTableProps) => {
   });
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 25; // Cantidad de elementos por página
+  const itemsPerPage = 23; // Cantidad de elementos por página
 
   const handlePageChange = (selected: { selected: number }) => {
     setCurrentPage(selected.selected);

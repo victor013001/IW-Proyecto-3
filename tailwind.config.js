@@ -12,6 +12,7 @@ module.exports = {
         'color-background-buttom': '#5C6A6C',
         'color-sidebar': '#515760',
         'buttom-sidebar': '#248068',
+        'buttom-sidebar-active': '#248090',
         'buttom-hover-sidebar': '#2EA082',
         'buttom-logout-sidebar': '#667D80',
         'buttom-logout-hover-sidebar': '#48524E',
