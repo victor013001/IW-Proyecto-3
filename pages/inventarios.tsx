@@ -34,7 +34,7 @@ const InventariosMovimientos = () => {
   const [selectedMaterial, setSelectedMaterial] = useState<string>('');
   const { data } = useQuery<{ material: Material[] }>(GET_MATERIAL);
   return (
-    <div className='flex w-full flex-col gap-3'>
+    <div className='flex w-full flex-col gap-3 pt-4'>
       <div className='flex w-full justify-center'>
         <h1>Gestión de inventarios</h1>
       </div>
