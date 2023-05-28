@@ -28,7 +28,7 @@ th {
 }
 
 th {
-  @apply bg-green-color text-white px-20;
+  @apply bg-green-color text-white px-14;
 }
 
 tr:nth-child(even) {
