@@ -24,8 +24,13 @@ query Movements($name: String!) {
     createdAt
     input
     output
+    material {
+      name
+    }
   }
 }
 `;
+
+
 
 export {CREATE_MOVEMENT, GET_MOVEMENTS_BY_NAME};

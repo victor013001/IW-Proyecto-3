@@ -102,7 +102,7 @@ const resolvers: Resolver = {
       if (hasRoleValidRole) {
         try {
           return await db.$queryRaw`
-          SELECT * FROM material_balance   
+          SELECT * FROM "material_balance" ORDER BY "createdAt" DESC;
         `;
         } catch (error) {
           return null;
@@ -112,7 +112,7 @@ const resolvers: Resolver = {
       return null;
     },
     material: async (parent, args, context) => {
-      const {db, session} = context;
+      const { db, session } = context;
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
 
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
@@ -128,12 +128,33 @@ const resolvers: Resolver = {
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
       if (hasRoleValidRole) {
+
+        const { name } = args;
+
+        if (!name) {
+          try {
+            const movements = await db.movement.findMany({
+              orderBy: {
+                createdAt: 'desc'
+              },
+              take: 100
+            });
+            return movements;
+          } catch (error) {
+            return null;
+          }
+        }
+
         try {
           const movements = await db.movement.findMany({
             where: {
+              createdAt: args.createdAt,
               material: {
                 name: args.name
               }
+            },
+            orderBy: {
+              createdAt: 'desc'
             }
           });
           return movements;

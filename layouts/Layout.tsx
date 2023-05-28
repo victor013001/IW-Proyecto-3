@@ -4,10 +4,9 @@ interface LayoutProps {
     children: JSX.Element
 }
 
-
 const Layout = ({children}: LayoutProps) => (
     <main className='flex h-screen w-full'>
-        <aside className='debug w-96 flex flex-col justify-between px-3 py-5 bg-base-color'> 
+        <aside className='w-96 flex flex-col justify-between px-3 py-5 bg-base-color'> 
             <div className='flex flex-col gap-4'>
                 <div>Perfil</div> 
                 <div>
@@ -15,7 +14,6 @@ const Layout = ({children}: LayoutProps) => (
                     <div>Materiales</div>
                     <div>Usuarios</div>  
                 </div>
-                
             </div>
             <div>Log out</div>
         </aside>

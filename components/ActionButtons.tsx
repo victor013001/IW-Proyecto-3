@@ -4,12 +4,11 @@ import { useMovivientosContext } from '@context/movimientosContext';
 const ActionButtons = () => {
   const { setOpenModalMovimientos } = useMovivientosContext();
   return (
-    <div>
-      <div>
-        <button type='button' onClick={() => setOpenModalMovimientos(true)}>
-          Agregar movimiento
-        </button>
-      </div>
+    <div className='flex py-6'>
+        <div>
+            <button type='button' onClick={() => setOpenModalMovimientos(true)}>Agregar movimiento</button>
+        </div>
+        
     </div>
   );
 };

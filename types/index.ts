@@ -1,4 +1,4 @@
-import { PrismaClient, Role, User } from "@prisma/client";
+import { Material, Movement, PrismaClient, Role, User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "next-auth/core/types";
 
@@ -28,4 +28,8 @@ export interface MaterialBalance {
 
 export interface ExtendedUser extends User {
   role: Role;
+}
+
+export interface ExtendedMovement extends Movement {
+  material: Material;
 }

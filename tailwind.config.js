@@ -11,7 +11,8 @@ module.exports = {
       colors: {
         'green-color': '#248068',
         'green-hover': '#2EA082',
-        'base-color': '#515760'
+        'base-color': '#515760',
+        'pagination-link-hover': '#f0f0f0',
       }
     },
     
