@@ -24,7 +24,7 @@ const Header = () => (
         </div>
         <div>
           <a
-            href='https://wa.me/573214015015'
+            href='https://web.whatsapp.com/'
             className='text-green-600 text-4xl hover:cursor-pointer'
           >
             <MdWhatsapp />

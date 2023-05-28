@@ -9,7 +9,7 @@ const Home = () => {
   const { data: session, status } = useSession();
   if (status === 'loading') return <Loading />;
   if (session) {
-    router.push('/inventarios');
+    router.push('/HeaderWithLogin');
   }
   return (
     <div className='body-landing h-screen w-full'>
