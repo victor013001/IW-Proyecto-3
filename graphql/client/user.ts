@@ -6,6 +6,7 @@ const GET_USER = gql`
       id
       email
       name
+      image
       role {
         name
       }

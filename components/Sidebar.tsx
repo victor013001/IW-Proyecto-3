@@ -1,12 +1,16 @@
 import { signOut } from "next-auth/react"
 import PrivateComponent from "./PrivateComponent"
+import { useUserData } from "hooks/useUserData";
 
 const Sidebar = () => {
+  const {userData:data}= useUserData();
+  console.log("datos de usuario", data)
+  const userImage=data?.user.image
   return (
     <aside className="flex flex-col h-screen w-72 bg-color-sidebar justify-between">
         <div className='flex flex-col gap-2'>
         <div className='flex justify-center m-5 rounded-full h-48 w-48 self-center items-stretch'>
-          <img className="object-fill rounded-full" src='media/bg.jpg' alt='logo' />
+          <img className="object-full rounded-full w-full" src={userImage} alt='logo' />
         </div>
         <nav>
           <ul className='flex flex-col gap-2'>
