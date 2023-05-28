@@ -26,7 +26,7 @@ const usuarios = () => (
 );
 
 const ListaUsuario = () => (
-  <div className='flex w-full flex-col gap-3'>
+  <div className='flex w-full flex-col gap-3 pt-4'>
     <div className='flex w-full justify-center'>
       <h1>Gestión de usuarios</h1>
     </div>
