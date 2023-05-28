@@ -26,20 +26,20 @@ const ModalMateriales = () => {
           input: formData.quantity,
         },
       });
-
-      if (data?.createMaterial == null) {
-        toast.warning('Ya existe un material con ese nombre');
-        return;
-      }
-      toast.success('Material creado exitosamente');
-      setFormData({
-        name: '',
-        quantity: 0,
-      });
-      setOpenModalMateriales(false);
     } catch (error) {
       toast.error('Error al crear el material');
     }
+
+    if (data?.createMaterial == null) {
+      toast.warning('Ya existe un material con ese nombre');
+      return;
+    }
+    toast.success('Material creado exitosamente');
+    setFormData({
+      name: '',
+      quantity: 0,
+    });
+    setOpenModalMateriales(false);
   };
 
   return (
