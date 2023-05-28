@@ -19,6 +19,13 @@ export interface Resolver {
   [key: string]: ResolverFunction;
 }
 
+export interface MaterialBalance {
+  id: string;
+  createdAt: string;
+  name: String;
+  balance: number;
+}
+
 export interface ExtendedUser extends User {
   role: Role;
 }

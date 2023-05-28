@@ -59,6 +59,10 @@ const typeDefs = gql`
     createMovement(name: String!, input: Int!, output: Int!): Movement
     upsertUserRol(email: String!, roleName: String!): User
   }
+
+  type Query {
+  material: [Material]
+  }
 `;
 
 export { typeDefs }

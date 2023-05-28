@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import Modal from './modals/Modal';
-import { ModalMovimientos } from './modals/ModalMovimientos';
+import React from 'react';
 import { useMovivientosContext } from '@context/movimientosContext';
 
 const ActionButtons = () => {
-  const {setOpenModalMovimientos} = useMovivientosContext();
+  const { setOpenModalMovimientos } = useMovivientosContext();
   return (
     <div className='flex py-6'>
         <div>
@@ -12,7 +10,7 @@ const ActionButtons = () => {
         </div>
         
     </div>
-  )
-}
+  );
+};
 
-export default ActionButtons
+export default ActionButtons;

@@ -9,6 +9,7 @@ const GET_USER = gql`
       role {
         name
       }
+      image
     }
   }
 `;

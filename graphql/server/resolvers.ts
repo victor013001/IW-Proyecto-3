@@ -25,7 +25,7 @@ const resolvers: Resolver = {
     createBy: async (parent, args, context) => {
       const { db } = context;
       const userId = parent?.userId;
-      if(!userId){
+      if (!userId) {
         return null;
       }
       const createBy = await db.user.findUnique({
@@ -38,7 +38,7 @@ const resolvers: Resolver = {
     material: async (parent, args, context) => {
       const { db } = context;
       const materialId = parent?.materialId;
-      if(!materialId){
+      if (!materialId) {
         return null;
       }
       const material = await db.material.findUnique({
@@ -54,22 +54,26 @@ const resolvers: Resolver = {
   Query: {
     user: async (parent, args, context) => {
       const { db, session } = context;
-      //console.log('session: ', session);
 
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
 
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
 
       if (hasRoleValidRole) {
-        const user = await db.user.findFirst(
-          {
-            where: {
-              email: args.email,
-            },
-          }
-        );
-        return user;
+        try {
+          const user = await db.user.findFirst(
+            {
+              where: {
+                email: args.email,
+              },
+            }
+          );
+          return user;
+        } catch (error) {
+          return null;
+        }
       }
+
       return null;
     },
     users: async (parent, args, context) => {
@@ -79,8 +83,12 @@ const resolvers: Resolver = {
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
 
       if (hasRoleValidRole) {
-        const users = await db.user.findMany();
-        return users;
+        try {
+          const users = await db.user.findMany();
+          return users;
+        } catch (error) {
+          return null;
+        }
       }
 
       return null;
@@ -92,9 +100,26 @@ const resolvers: Resolver = {
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
 
       if (hasRoleValidRole) {
-        return await db.$queryRaw`
-          SELECT * FROM material_balance   
+        try {
+          return await db.$queryRaw`
+          SELECT * FROM "material_balance" ORDER BY "createdAt" DESC;
         `;
+        } catch (error) {
+          return null;
+        }
+      };
+
+      return null;
+    },
+    material: async (parent, args, context) => {
+      const { db, session } = context;
+      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
+
+      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
+
+      if (hasRoleValidRole) {
+        const materials = await db.material.findMany();
+        return materials;
       };
       return null;
     },
@@ -112,7 +137,7 @@ const resolvers: Resolver = {
               orderBy: {
                 createdAt: 'desc'
               },
-              take: 50
+              take: 100
             });
             return movements;
           } catch (error) {
@@ -139,30 +164,22 @@ const resolvers: Resolver = {
       }
       return null;
     },
-    material: async (parent, args, context) => {
-      const {db, session} = context;
-      const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
-
-      const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
-
-      if (hasRoleValidRole) {
-        const materials = await db.material.findMany();
-        return materials;
-      };
-      return null;
-    }
   },
 
   Mutation: {
     createUser: async (parent, args, context) => {
       const { db } = context;
-      const user = await db.user.create({
-        data: {
-          name: args.name,
-          email: args.email,
-        },
-      });
-      return user;
+      try {
+        const user = await db.user.create({
+          data: {
+            name: args.name,
+            email: args.email,
+          },
+        });
+        return user;
+      } catch (error) {
+        return null;
+      }
     },
 
     createMaterial: async (parent, args, context) => {
@@ -173,11 +190,18 @@ const resolvers: Resolver = {
 
       const email = session?.user?.email ?? '';
 
+      const name = args?.name;
+      const input = args?.input;
+
+      if (!name || !input || input <= 0) {
+        return null;
+      }
+
       if (hasRoleValidRole) {
         try {
           const material = await db.material.create({
             data: {
-              name: args.name,
+              name,
               createdBy: {
                 connect: {
                   email,
@@ -188,7 +212,7 @@ const resolvers: Resolver = {
 
           await db.movement.create({
             data: {
-              input: args.input,
+              input,
               output: 0,
               createdBy: {
                 connect: {
@@ -212,7 +236,7 @@ const resolvers: Resolver = {
       return null;
     },
 
-    createMovement: async(parent, args, context) => {
+    createMovement: async (parent, args, context) => {
       const { db, session } = context;
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN, Enum_RoleName.USER];
 
@@ -220,14 +244,14 @@ const resolvers: Resolver = {
 
       const email = session?.user?.email ?? '';
 
-      if (hasRoleValidRole){
+      if (hasRoleValidRole) {
         const { input } = args;
         const { output } = args;
 
         if ((input == 0 && output == 0) || (input > 0 && output != 0) || (output > 0 && input != 0)) {
           return null;
         }
-        try{
+        try {
           const movement = await db.movement.create({
             data: {
               input: input,
@@ -245,7 +269,7 @@ const resolvers: Resolver = {
             }
           });
           return movement;
-        }catch(error){
+        } catch (error) {
           return null;
         }
       }
@@ -256,31 +280,31 @@ const resolvers: Resolver = {
       const validRoles: Enum_RoleName[] = [Enum_RoleName.ADMIN];
       const hasRoleValidRole: boolean = await hasRole({ db, session, validRoles });
 
-      if(hasRoleValidRole){
-        try{
+      if (hasRoleValidRole) {
+        try {
           const role = await db.role.findFirst({
             where: {
               name: args.roleName
             }
           })
           const roleId = role?.id;
-          if (!roleId){
+          if (!roleId) {
             return null;
           }
           const user = await db.user.upsert({
-            where:{
+            where: {
               email: args.email
             },
             update: {
               roleId: roleId,
             },
-            create:{
+            create: {
               email: args.email,
               roleId: roleId
             }
           });
           return user;
-        }catch(error){
+        } catch (error) {
           return null;
         }
       }
