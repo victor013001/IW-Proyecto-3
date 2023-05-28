@@ -1,15 +1,28 @@
-import { signIn } from 'next-auth/react';
+import { Header } from '@components/Header';
+import { Loading } from '@components/Loading';
+import { useSession } from 'next-auth/react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const Home = () => {
-  const text = 'Proyecto 3';
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  if (status === 'loading') return <Loading />;
+  if (session) {
+    router.push('/inventarios');
+  }
   return (
-    <div className='flex w-full h-screen flex-col gap-2 justify-center items-center'>
-      {text}
-      <div>
-        <button onClick={() => signIn()} className='bg-indigo-400'>
-          Iniciar Sesion
-        </button>
-      </div>
+    <div className='body-landing h-screen w-full'>
+      <Head>
+        <title>ConstruStock</title>
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1'
+        ></meta>
+      </Head>
+      <body>
+        <Header />
+      </body>
     </div>
   );
 };
