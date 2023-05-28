@@ -48,7 +48,7 @@ const ModalMovimientos = () => {
       });
 
       if (result.data?.createMovement == null) {
-        toast.warning('No se pudo crear el movimiento');
+        toast.warning('No hay saldo suficiente en el material para crear el movimiento');
         return;
       }
 
